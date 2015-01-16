@@ -1,0 +1,15 @@
+
+.gallery-wrapper {
+	margin: 5px 0 15px 15px;
+	padding-left: 10px;
+	border-left: solid 1px #ccc;
+}
+
+.gallery-wrapper {
+	max-width: 300px;
+}
+
+.gallery-wrapper img {
+	max-width: 100%;
+	height: auto;
+}
