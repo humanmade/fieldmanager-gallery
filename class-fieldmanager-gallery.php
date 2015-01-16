@@ -97,8 +97,8 @@ class Fieldmanager_Gallery extends Fieldmanager_Field {
 			wp_enqueue_media( $args ); // generally on post pages this will not have an impact.
 		} );
 		if ( !self::$has_registered_gallery ) {
-			wp_enqueue_style( 'fm_gallery', $this->plugin_url . 'css/fieldmanager-gallery.css', array(), $this->version );
-			wp_enqueue_script( 'fm_gallery', $this->plugin_url . 'js/fieldmanager-gallery.js', array( 'jquery' ), $this->version );
+			wp_enqueue_style( 'fm_gallery', $this->plugin_url . 'css/fieldmanager-gallery.css', array() );
+			wp_enqueue_script( 'fm_gallery', $this->plugin_url . 'js/fieldmanager-gallery.js', array( 'jquery' ) );
 			self::$has_registered_gallery = True;
 		}
 		parent::__construct( $label, $options );
