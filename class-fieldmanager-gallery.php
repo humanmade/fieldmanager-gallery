@@ -184,7 +184,7 @@ class Fieldmanager_Gallery extends Fieldmanager_Field {
 			esc_attr( $this->get_form_name() ),
 			esc_attr( $this->button_label ),
 			esc_attr( $input_value ),
-			$preview,
+			wp_kses_post( $preview ),
 			json_encode( $this->preview_size ),
 			esc_attr( $this->modal_title ),
 			esc_attr( $this->modal_button_label ),
