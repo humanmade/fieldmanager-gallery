@@ -144,7 +144,7 @@ class Fieldmanager_Gallery extends Fieldmanager_Field {
 			if ( is_numeric( $value ) && $value > 0 ) {
 
 				$attachment = get_post( $value );
-				$out = '<div class="gallery-item" data-id="' . $value . '">';
+				$out = '<div class="gallery-item" data-id="' . esc_attr( $value ) . '">';
 
 				if ( strpos( $attachment->post_mime_type, 'image/' ) === 0 ) {
 

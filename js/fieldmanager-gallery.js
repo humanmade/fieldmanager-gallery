@@ -163,7 +163,7 @@ $( document ).on( 'click', '.fm-gallery-button', function( event ) {
 		}
 
 		var ids = [],
-			preview = '';
+		    galleryItems = [];
 
 		attachments.each( function( attachment ) {
 
@@ -177,29 +177,36 @@ $( document ).on( 'click', '.fm-gallery-button', function( event ) {
 			props.linkUrl = '#';
 			props.caption = '';
 
-			preview += '<div class="gallery-item" data-id="' + attachment.id + '">';
+			var galleryItem = $( '<div />', {
+				class: 'gallery-item',
+				'data-id': attachment.id,
+			} );
+
+			galleryItems.push( galleryItem );
 
 			if ( attributes.type == 'image' ) {
 
 				props.url = props.src;
 
 				if ( ! $el.data('collection') ) {
-					preview += 'Uploaded file:<br />';
-					preview += wp.media.string.image( props );
+					galleryItem.append( document.createTextNode( 'Uploaded file:' ) );
+					galleryItem.append( $( '<br />' ) );
+					galleryItem.append( wp.media.string.image( props ) );
 				} else {
-					preview += wp.media.string.image( props );
+					galleryItem.append( wp.media.string.image( props ) );
 				}
 
 			} else {
-				preview += 'Uploaded file:&nbsp;';
-				preview += wp.media.string.link( props );
+				galleryItem.append( document.createTextNode( 'Uploaded file:&nbsp;' ) );
+				galleryItem.append( $( '<br />' ) );
+				galleryItem.append( wp.media.string.link( props ) );
 			}
 
 			if ( ! $el.data('collection') ) {
-				preview += '<br /><a class="fm-gallery-remove fm-delete" href="#">remove</a><br />';
+				galleryItem.append( $( '<br />' ) );
+				galleryItem.append( $( '<a/>', { class: "fm-gallery-remove fm-delete", href: "#", html: 'remove' } ) );
+				galleryItem.append( $( '<br />' ) );
 			}
-
-			preview += '</div>';
 
 		});
 
@@ -207,7 +214,7 @@ $( document ).on( 'click', '.fm-gallery-button', function( event ) {
 		$el.parent().find('.fm-gallery-id').val( ids.join(',') );
 
 		var $wrapper = $el.parent().find( '.gallery-wrapper' );
-		$wrapper.html( preview ).trigger( 'fieldmanager_gallery_preview', [ $wrapper, attachments, wp ] );
+		$wrapper.html('').append( galleryItems ).trigger( 'fieldmanager_gallery_preview', [ $wrapper, attachments, wp ] );
 	};
 
 	// When an image is selected, run a callback.
