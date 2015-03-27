@@ -101,6 +101,12 @@ class Fieldmanager_Gallery extends Fieldmanager_Field {
 			wp_enqueue_script( 'fm_gallery', $this->plugin_url . 'js/fieldmanager-gallery.js', array( 'jquery' ) );
 			self::$has_registered_gallery = True;
 		}
+
+		add_filter( 'wp_kses_allowed_html', function( $allowed_html ) {
+			$allowed_html['div']['data-id'] = true;
+			return $allowed_html;
+		} );
+
 		parent::__construct( $label, $options );
 	}
 
