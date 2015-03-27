@@ -102,6 +102,10 @@ class Fieldmanager_Gallery extends Fieldmanager_Field {
 			self::$has_registered_gallery = True;
 		}
 
+		/**
+		 * Whitelist the data attribute used
+		 * to expose gallery item IDs to the JS.
+		 */
 		add_filter( 'wp_kses_allowed_html', function( $allowed_html ) {
 			$allowed_html['div']['data-id'] = true;
 			return $allowed_html;
