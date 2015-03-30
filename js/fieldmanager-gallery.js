@@ -21,7 +21,7 @@ var sortableCollection = function() {
 				var val = [];
 
 				$wrapper.children('.gallery-item').each( function() {
-					val.push( $(this).data('id') );
+					val.push( $(this).data('fieldmanager-item-id') );
 				} );
 
 				$input.val( val.join(',') );
@@ -179,7 +179,7 @@ $( document ).on( 'click', '.fm-gallery-button', function( event ) {
 
 			var galleryItem = $( '<div />', {
 				class: 'gallery-item',
-				'data-id': attachment.id,
+				'data-fieldmanager-item-id': attachment.id,
 			} );
 
 			galleryItems.push( galleryItem );
